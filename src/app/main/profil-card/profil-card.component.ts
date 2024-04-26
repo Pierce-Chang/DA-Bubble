@@ -9,12 +9,12 @@ import { collection, doc, getFirestore, onSnapshot, query, setDoc } from 'fireba
 import { ChatService } from '../../services/chat.service';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k",
-  authDomain: "da-bubble-87fea.firebaseapp.com",
-  projectId: "da-bubble-87fea",
-  storageBucket: "da-bubble-87fea.appspot.com",
-  messagingSenderId: "970901942782",
-  appId: "1:970901942782:web:56b67253649b6206f290af"
+  apiKey: "AIzaSyDOC1-zE5bnxS1ES82HHfl_cg3qm5qyZTQ",
+  authDomain: "da-bubble-70ce4.firebaseapp.com",
+  projectId: "da-bubble-70ce4",
+  storageBucket: "da-bubble-70ce4.appspot.com",
+  messagingSenderId: "557141847139",
+  appId: "1:557141847139:web:633a63e27efd87edf3dc56"
 };
 
 const app = initializeApp(firebaseConfig);

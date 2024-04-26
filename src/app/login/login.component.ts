@@ -11,12 +11,12 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k",
-  authDomain: "da-bubble-87fea.firebaseapp.com",
-  projectId: "da-bubble-87fea",
-  storageBucket: "da-bubble-87fea.appspot.com",
-  messagingSenderId: "970901942782",
-  appId: "1:970901942782:web:56b67253649b6206f290af"
+  apiKey: "AIzaSyDOC1-zE5bnxS1ES82HHfl_cg3qm5qyZTQ",
+  authDomain: "da-bubble-70ce4.firebaseapp.com",
+  projectId: "da-bubble-70ce4",
+  storageBucket: "da-bubble-70ce4.appspot.com",
+  messagingSenderId: "557141847139",
+  appId: "1:557141847139:web:633a63e27efd87edf3dc56"
 };
 
 const provider = new GoogleAuthProvider();
@@ -167,17 +167,17 @@ startTheAnimation() {
   async createWelcomeMessage() {
   const welcomeMessage = new DirectMessage({
     yourMessage: false,
-    createdBy: 'gZrReha096XBbzYewrjt1cP8AZB2a',
+    createdBy: 'sNqSUGF2iIbXmBxUUY3c4smjO3u1',
     creationDate: Date.now(),
     message:
-      'Herzlich willkommen auf dem Code Learning Server 👋 ich hoffe, du hast gut hergefunden',
+      'Herzlich willkommen bei DABubble 👋, ich wünsche viel Spaß beim Erkunden!',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/da-bubble-87fea.appspot.com/o/userImages%2FwelcomeGif.gif?alt=media&token=91f0cf99-d5d8-47ad-be89-15ca36856c35',
+      'https://firebasestorage.googleapis.com/v0/b/da-bubble-70ce4.appspot.com/o/userImages%2FwelcomeGif.gif?alt=media&token=069b6ac5-d2c0-4115-b885-a8e3f83873b6',
   });
   const newUserRef = doc(
     db,
     `users/${this.auth.currentUser.uid}/allDirectMessages`,
-    'gZrReha096XBbzYewrjt1cP8AZB2'
+    'sNqSUGF2iIbXmBxUUY3c4smjO3u1'
   );
 
   try {
@@ -185,7 +185,7 @@ startTheAnimation() {
 
     const directMessagesCollection = collection(
       db,
-      `users/${this.auth.currentUser.uid}/allDirectMessages/gZrReha096XBbzYewrjt1cP8AZB2/directMessages`
+      `users/${this.auth.currentUser.uid}/allDirectMessages/sNqSUGF2iIbXmBxUUY3c4smjO3u1/directMessages`
     );
 
     const docRefNewUser = await addDoc(
@@ -196,7 +196,7 @@ startTheAnimation() {
     await updateDoc(
       doc(
         db,
-        `users/${this.auth.currentUser.uid}/allDirectMessages/gZrReha096XBbzYewrjt1cP8AZB2/directMessages`,
+        `users/${this.auth.currentUser.uid}/allDirectMessages/sNqSUGF2iIbXmBxUUY3c4smjO3u1/directMessages`,
         docRefNewUser.id
       ),
       {
@@ -218,12 +218,22 @@ startTheAnimation() {
   });
 }
 
-  async addUserToGeneralChannel() {
-  const channelRef = doc(db, 'channels', 'allgemein');
-  await updateDoc(channelRef, {
-    members: arrayUnion(this.auth.currentUser.uid),
-  });
+async addUserToGeneralChannel() {
+  const generalChannelRef = doc(db, 'channels', 'allgemein');
+  const angularChannelRef = doc(db, 'channels', 'ZkthG0MAr8nw8XfL5AOU');
+
+  try {
+    await updateDoc(generalChannelRef, {
+      members: arrayUnion(this.auth.currentUser.uid),
+    });
+    await updateDoc(angularChannelRef, {
+      members: arrayUnion(this.auth.currentUser.uid),
+    });
+  } catch (error) {
+    console.error("Fehler beim Hinzufügen des Benutzers zu den Kanälen", error);
+  }
 }
+
 
   async signIn() {
   await signInWithEmailAndPassword(this.auth, this.signInForm.value.email, this.signInForm.value.password).then(async () => {
@@ -241,7 +251,7 @@ startTheAnimation() {
 }
 
   async signInAsGuest() {
-  await signInWithEmailAndPassword(this.auth, 'guest@dabubble77.com', '123456');
+  await signInWithEmailAndPassword(this.auth, 'guest@dabubble.com', '12345678');
   this.router.navigateByUrl('');
 }
 
