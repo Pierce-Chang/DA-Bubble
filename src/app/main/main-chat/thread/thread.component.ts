@@ -93,6 +93,10 @@ export class ThreadComponent implements OnInit, OnChanges {
       });
     });
   }
+
+  isPdfUrl(url: string): boolean {
+    return url.includes('.pdf');
+  }
   
   /**
    * Fetches all the reactions form the reactions collection form firebase for the current thread.

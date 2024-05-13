@@ -16,7 +16,8 @@
                         {{thread?.message}}
                     </div>
                     <div *ngIf="thread?.imageUrl" class="imgMessage">
-                        <img [src]="thread?.imageUrl" alt="Image uploaded by {{ thread?.createdBy }}"/>
+                        <img [src]="isPdfUrl(thread?.imageUrl) ? pdfIconPath : thread?.imageUrl" 
+                            alt="{{ isPdfUrl(thread?.imageUrl) ? 'PDF Document' : 'Image uploaded by ' + thread?.createdBy }}"/>
                         <div class="imgInteraction">
                           <div (click)="downloadImage(thread?.imageUrl)">
                             <mat-icon class="material-symbols-rounded" fontIcon="download"></mat-icon>
@@ -128,7 +129,8 @@
                         {{thread?.message}}
                     </div>
                     <div *ngIf="thread?.imageUrl" class="imgMessage">
-                        <img [src]="thread?.imageUrl" alt="Image uploaded by {{ thread?.createdBy }}"/>
+                        <img [src]="isPdfUrl(thread?.imageUrl) ? pdfIconPath : thread?.imageUrl" 
+                        alt="{{ isPdfUrl(thread?.imageUrl) ? 'PDF Document' : 'Image uploaded by ' + thread?.createdBy }}"/>
                         <div class="imgInteraction">
                             <div (click)="downloadImage(thread?.imageUrl)">
                             <mat-icon class="material-symbols-rounded" fontIcon="download"></mat-icon>
