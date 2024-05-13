@@ -239,12 +239,13 @@ export class TextBoxComponent {
       'image/jpeg',
       'image/gif',
       'image/svg+xml',
+      'application/pdf',
     ];
     if (!validTypes.includes(file.type)) {
-      alert('Nur PNG, JPG, GIF und SVG Dateien sind zulässig.');
+      alert('Nur PNG, JPG, GIF, SVG und PDF Dateien sind zulässig.');
       return;
     }
-    const maxSizeInBytes = 1.5 * 1024 * 1024; // 1,5 MB in Bytes
+    const maxSizeInBytes = 3 * 1024 * 1024; // 3 MB in Bytes
     if (file.size > maxSizeInBytes) {
       alert('Die Datei ist zu groß. Maximale Dateigröße ist 1,5 MB.');
       return;
@@ -259,6 +260,9 @@ export class TextBoxComponent {
     );
   }
 
+  public fileIconUrl: string | undefined;
+
+
   async uploadImage(file: File) {
     try {
       const uniqueId = this.generateUniqueId();
@@ -269,6 +273,11 @@ export class TextBoxComponent {
       const uploadTask = await uploadBytes(storageRef, file);
       const downloadUrl = await getDownloadURL(uploadTask.ref);
       this.imageURL = downloadUrl;
+      if (file.type == 'application/pdf') {
+        this.fileIconUrl = '/assets/img/pdf-icon.png'
+      }
+   
+  
     } catch (error) {
       console.error('Error uploading file: ', error);
     }
@@ -280,6 +289,7 @@ export class TextBoxComponent {
       const storageRef = ref(this.storage, this.filePath);
       await deleteObject(storageRef);
       this.imageURL = undefined;
+      this.fileIconUrl = undefined;
       this.filePath = undefined;
       this.resetFileInput();
     } catch (error) {
@@ -290,6 +300,8 @@ export class TextBoxComponent {
   private resetFileInput() {
     if (this.fileUpload && this.fileUpload.nativeElement) {
       this.fileUpload.nativeElement.value = '';
+      this.imageURL = undefined;
+      this.fileIconUrl = undefined;
     }
   }
 
@@ -442,6 +454,7 @@ export class TextBoxComponent {
   private cleanupAfterSend() {
     this.messageModel = '';
     this.imageURL = undefined;
+    this.fileIconUrl = undefined;
     this.filePath = undefined;
     this.displayUser = false;
     this.displayChannels = false;

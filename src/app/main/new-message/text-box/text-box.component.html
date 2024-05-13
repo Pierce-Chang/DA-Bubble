@@ -53,19 +53,24 @@
       </div>
     </div>
   </div>
+
+
   <div
-    *ngIf="this.imageURL"
-    class="imagePreview"
-    [style.backgroundImage]="'url(' + this.imageURL + ')'"
-  >
-    <div class="deleteUpload">
-      <mat-icon
-        (click)="removeFileUpload()"
-        class="material-symbols-rounded"
-        fontIcon="close"
-      ></mat-icon>
-    </div>
+  *ngIf="fileIconUrl || imageURL" 
+  class="imagePreview"
+  [style.backgroundImage]="'url(' + (fileIconUrl ? fileIconUrl : imageURL) + ')'"
+>
+  <div class="deleteUpload">
+    <mat-icon
+      (click)="removeFileUpload()"
+      class="material-symbols-rounded"
+      fontIcon="close"
+    ></mat-icon>
   </div>
+</div>
+
+
+
   <div class="bottomIcons">
     <div class="addElements">
       <input

@@ -40,6 +40,7 @@ export class ThreadComponent implements OnInit, OnChanges {
   reactionNames =  [];
   reactionCount: number;
   messageCountPath: string;
+  public pdfIconPath: string = '/assets/img/pdf-icon.png'
 
   constructor(private chatService: ChatService, private main: MainChatComponent, public viewManagementService: ViewManagementService,) { }
 
