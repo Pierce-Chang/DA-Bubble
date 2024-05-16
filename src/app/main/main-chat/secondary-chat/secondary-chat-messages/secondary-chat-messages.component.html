@@ -10,7 +10,8 @@
         <div class="thread-message">
             <span>{{ message.message }}</span>           
             <div *ngIf="message?.imageUrl" class="imgMessage">
-                <img [src]="message?.imageUrl" alt="Image uploaded by {{ message?.createdBy }}"/>
+                <img [src]="isPdfUrl(message?.imageUrl) ? pdfIconPath : message?.imageUrl" 
+                        alt="{{ isPdfUrl(message?.imageUrl) ? 'PDF Document' : 'Image uploaded byy ' + message?.createdBy }}"/>
                 <div class="imgInteraction">
                   <div (click)="downloadImage(message?.imageUrl)">
                     <mat-icon class="material-symbols-rounded" fontIcon="download"></mat-icon>
@@ -109,7 +110,8 @@
         <div *ngIf="message?.message || message?.imageUrl" class="thread-message own-bubble">
             <span>{{ message.message }}</span>
             <div *ngIf="message?.imageUrl" class="imgMessage">
-                <img [src]="message?.imageUrl" alt="Image uploaded by {{ message?.createdBy }}"/>
+                <img [src]="isPdfUrl(message?.imageUrl) ? pdfIconPath : message?.imageUrl" 
+                        alt="{{ isPdfUrl(message?.imageUrl) ? 'PDF Document' : 'Image uploaded by ' + message?.createdBy }}"/>
                 <div class="imgInteraction">
                   <div (click)="downloadImage(message?.imageUrl)">
                     <mat-icon class="material-symbols-rounded" fontIcon="download"></mat-icon>

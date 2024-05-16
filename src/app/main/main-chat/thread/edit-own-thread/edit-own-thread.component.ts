@@ -22,7 +22,6 @@ export class EditOwnThreadComponent implements OnInit {
   @Input() textAreaEditMessage!: string;
   @Input() activeChannelId!: string;
   @Input() thread: any;
-
   @Input() messageData: any;
   @Input() messageId: any;
   @Input() messageThreadId: string;
@@ -35,6 +34,7 @@ export class EditOwnThreadComponent implements OnInit {
   channelDmPath: string;
   messagePath: string;
   collectionPath: string;
+  public pdfIconPath: string = '/assets/img/pdf-icon.png'
 
   constructor() { }
 
@@ -120,6 +120,10 @@ export class EditOwnThreadComponent implements OnInit {
         this.ownMessageEditChild.emit(this.ownMessageEdit);
       }
     }
+  }
+
+  isPdfUrl(url: string): boolean {
+    return url.includes('.pdf');
   }
 
   /**

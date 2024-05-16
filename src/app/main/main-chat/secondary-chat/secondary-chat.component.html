@@ -33,7 +33,8 @@
           <div *ngIf="firstThreadMessage?.message || firstThreadMessage?.imageUrl" class="thread-message">
             <span>{{ firstThreadMessage?.message }}</span>
             <div *ngIf="firstThreadMessage?.imageUrl" class="imgMessage">
-              <img [src]="firstThreadMessage?.imageUrl" alt="Image uploaded by {{ firstThreadMessage?.createdBy }}"/>
+              <img [src]="isPdfUrl(firstThreadMessage?.imageUrl) ? pdfIconPath : firstThreadMessage?.imageUrl" 
+                        alt="{{ isPdfUrl(firstThreadMessage?.imageUrl) ? 'PDF Document' : 'Image uploaded by ' + firstThreadMessage?.createdBy }}"/>
               <div class="imgInteraction">
                 <div (click)="downloadImage(firstThreadMessage?.imageUrl)">
                   <mat-icon class="material-symbols-rounded" fontIcon="download"></mat-icon>
@@ -63,7 +64,8 @@
           <div *ngIf="firstThreadMessage?.message || firstThreadMessage?.imageUrl" class="thread-message own-message">
             <span>{{ firstThreadMessage?.message }}</span>
             <div *ngIf="firstThreadMessage?.imageUrl" class="imgMessage">
-              <img [src]="firstThreadMessage?.imageUrl" alt="Image uploaded by {{ firstThreadMessage?.createdBy }}"/>
+              <img [src]="isPdfUrl(firstThreadMessage?.imageUrl) ? pdfIconPath : firstThreadMessage?.imageUrl" 
+              alt="{{ isPdfUrl(firstThreadMessage?.imageUrl) ? 'PDF Document' : 'Image uploaded by ' + firstThreadMessage?.createdBy }}"/>
               <div class="imgInteraction">
                 <div (click)="downloadImage(firstThreadMessage?.imageUrl)">
                   <mat-icon class="material-symbols-rounded" fontIcon="download"></mat-icon>

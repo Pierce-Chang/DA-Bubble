@@ -44,6 +44,7 @@ export class SecondaryChatMessagesComponent implements OnInit, OnDestroy {
   showMoreEmojisToolbar: boolean = false;
   messageDeleted: boolean = false;
   ownMessageEdit: boolean = false;
+  public pdfIconPath: string = '/assets/img/pdf-icon.png'
 
   private firestore: Firestore = inject(Firestore);
   private storage: FirebaseStorage;
@@ -92,6 +93,11 @@ export class SecondaryChatMessagesComponent implements OnInit, OnDestroy {
 
   openImage(url: string) {
     window.open(url, '_blank');
+  }
+
+  
+  isPdfUrl(url: string): boolean {
+    return url.includes('.pdf');
   }
 
   /**

@@ -69,6 +69,7 @@ export class SecondaryChatComponent implements OnInit, OnDestroy {
   activeChannelId: string = '';
   private threadIdSubscription!: Subscription;
   public selectedThreadId!: string;
+  public pdfIconPath: string = '/assets/img/pdf-icon.png'
   threadMessages: ThreadMessage[] = [];
   firstThreadMessage?: ThreadMessage;
   threadOpen: boolean = false;
@@ -173,7 +174,9 @@ export class SecondaryChatComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  isPdfUrl(url: string): boolean {
+    return url.includes('.pdf');
+  }
 
   openImage(url: string) {
     window.open(url, '_blank');

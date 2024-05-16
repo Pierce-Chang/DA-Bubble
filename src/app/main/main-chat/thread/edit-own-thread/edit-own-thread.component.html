@@ -6,13 +6,15 @@
             <div class="deleteUpload">
                 <mat-icon (click)="deleteDocument(thread?.imageUrl)" class="material-symbols-rounded" fontIcon="close"></mat-icon>
             </div>
-            <img [src]="thread?.imageUrl" alt="Image uploaded by {{ thread?.createdBy }}"/>
+            <img [src]="isPdfUrl(thread?.imageUrl) ? pdfIconPath : thread?.imageUrl" 
+            alt="{{ isPdfUrl(thread?.imageUrl) ? 'PDF Document' : 'Image uploaded by ' + thread?.createdBy }}"/>
         </div>
         <div *ngIf="messageData?.imageUrl" class="imgMessage">
             <div class="deleteUpload">
                 <mat-icon (click)="deleteDocument(messageData?.imageUrl)" class="material-symbols-rounded" fontIcon="close"></mat-icon>
             </div>
-            <img [src]="messageData?.imageUrl" alt="Image uploaded by {{ messageData?.createdBy }}"/>
+             <img [src]="isPdfUrl(messageData?.imageUrl) ? pdfIconPath : messageData?.imageUrl" 
+            alt="{{ isPdfUrl(messageData?.imageUrl) ? 'PDF Document' : 'Image uploaded by ' + messageData?.createdBy }}"/>
         </div>
 
         <div class="messageOwnEditBottom">
